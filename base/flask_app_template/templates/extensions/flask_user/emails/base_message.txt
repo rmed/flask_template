@@ -1,0 +1,7 @@
+<p>{{ _('Hello %(email)s,', email=user.email) }}</p>
+
+{% block message %}
+{% endblock %}
+
+{{ _('Sincerely,') }}
+{{ app_name }}

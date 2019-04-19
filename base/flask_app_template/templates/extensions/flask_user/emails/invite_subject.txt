@@ -1,0 +1,3 @@
+{% extends 'extensions/flask_user/emails/base_subject.txt' %}
+
+{% block subject %}{{ _('Invitation') }}{% endblock %}

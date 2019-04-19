@@ -1,0 +1,9 @@
+recursive-include shouko/migrations *
+recursive-include shouko/templates *
+recursive-include shouko/translations *
+recursive-include shouko/static *
+
+recursive-exclude * __pycache__
+recursive-exclude * *.swp
+recursive-exclude * *.py[co]
+recursive-exclude * *.orig
