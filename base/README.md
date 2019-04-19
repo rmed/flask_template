@@ -39,12 +39,13 @@ pip install -r requirements-dev.txt
 pip install -r requirements.txt
 ```
 
+**Production configuration is set through the `FLASK_APP_CONFIG` environment variable.** 
 
 ## CSRF
 
 By default, all AJAX requests that could modify data (`POST`, `PUT`, etc.) are protected with a CSRF token when the document is loaded. This token is conditionally included in the default layout as follows:
 
-```html
+```html+jinja
 {# CSRF token. Set flag in templates when needed #}
 {% if _include_csrf %}
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -53,7 +54,7 @@ By default, all AJAX requests that could modify data (`POST`, `PUT`, etc.) are p
 
 In order to enable the token, simply extend the layout in a template and set the value of `_include_csrf`:
 
-```html
+```html+jinja
 {% extends "layout.html" %}
 
 {% set _include_csrf = true %}

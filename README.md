@@ -5,3 +5,4 @@ This repository contains a Flask template and other *recipes* I tend to replicat
 The directory layout is as follows:
 
 - `base`: This directory contains the basic application structure and configuration 
+- `celery`: This directory contains a recipe for asynchronous tasks using Celery and Redis
