@@ -121,3 +121,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Generated assets
+base/flask_app_template/static/gen
+base/testdb.sqlite
