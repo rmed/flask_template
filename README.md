@@ -5,5 +5,5 @@ This repository contains a Flask template and other *recipes* I tend to replicat
 The directory layout is as follows:
 
 - `base`: This directory contains the basic application structure and configuration 
-- `async_loading`: Load content of HTML tags asynchronously through AJAX
-- `celery`: This directory contains a recipe for asynchronous tasks using Celery and Redis
+- `async_loading`: Recipe for loading content of HTML tags asynchronously through AJAX
+- `celery`: Recipe for asynchronous tasks using Celery and Redis
