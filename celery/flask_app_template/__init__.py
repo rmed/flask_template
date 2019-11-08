@@ -21,7 +21,7 @@ def init_app():
         celery.make_celery(app)
 
         # Import tasks
-        from flask_app_template.tasks import async_user_email
+        from flask_app_template.tasks import async_user_mail, async_mail
 
     # Setup Flask-User
     def _send_user_mail(*args):
