@@ -1,30 +1,97 @@
 # Spanish translations for flask_app_template.
 # Copyright (C) 2019 Rafael Medina
-# This file is distributed under the same license as the flask_app_template project.
+# This file is distributed under the same license as the flask_app_template
+# project.
 # Rafael Medina García <rafamedgar@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-19 12:03+0200\n"
-"PO-Revision-Date: 2019-04-19 11:57+0200\n"
+"POT-Creation-Date: 2020-01-12 18:05+0100\n"
+"PO-Revision-Date: 2020-01-12 18:10+0100\n"
 "Last-Translator: Rafael Medina García <rafamedgar@gmail.com>\n"
 "Language: es\n"
 "Language-Team: es <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.8.0\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: flask_app_template/bootstrap.py:11
+#: flask_app_template/__init__.py:185
+msgid "Please login to continue"
+msgstr "Por favor, inicia sesión para continuar"
+
+#: flask_app_template/__init__.py:189
+msgid "To protect your account, please reauthenticate to access this page."
+msgstr ""
+"Con el fin de proteger tu cuenta, por favor vuelve a autenticarte para acceder "
+"a esta página."
+
+#: flask_app_template/bootstrap.py:12
 msgid "English"
 msgstr "Inglés"
 
-#: flask_app_template/bootstrap.py:11
+#: flask_app_template/bootstrap.py:12
 msgid "Spanish"
 msgstr "Español"
+
+#: flask_app_template/forms.py:14
+msgid "Username or email"
+msgstr "Nombre de usuario o email"
+
+#: flask_app_template/forms.py:16
+msgid "Identity is required"
+msgstr "Se requiere la identidad"
+
+#: flask_app_template/forms.py:21 flask_app_template/forms.py:48
+msgid "Password"
+msgstr "Contraseña"
+
+#: flask_app_template/forms.py:23 flask_app_template/forms.py:50
+#: flask_app_template/forms.py:61
+msgid "Password is required"
+msgstr "Se requiere la contraseña"
+
+#: flask_app_template/forms.py:27
+msgid "Remember me"
+msgstr "Recordarme"
+
+#: flask_app_template/forms.py:29 flask_app_template/forms.py:54
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+#: flask_app_template/forms.py:35
+msgid "Email"
+msgstr "Email"
+
+#: flask_app_template/forms.py:37
+msgid "Email is required"
+msgstr "Se requiere el email"
+
+#: flask_app_template/forms.py:38
+msgid "Invalid Email"
+msgstr "Email no válido"
+
+#: flask_app_template/forms.py:42 flask_app_template/forms.py:74
+#: flask_app_template/templates/auth/reset_password.html:4
+#: flask_app_template/templates/auth/reset_password.html:13
+msgid "Reset password"
+msgstr "Restablecer contraseña"
+
+#: flask_app_template/forms.py:60
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: flask_app_template/forms.py:65
+msgid "Retype new password"
+msgstr "Confirmación de contraseña"
+
+#: flask_app_template/forms.py:69
+msgid "Passwords did not match"
+msgstr "Las contraseñas no coinciden"
 
 #: flask_app_template/templates/macros.html:311
 msgid "Previous"
@@ -33,6 +100,40 @@ msgstr "Anterior"
 #: flask_app_template/templates/macros.html:315
 msgid "Next"
 msgstr "Siguiente"
+
+#: flask_app_template/templates/auth/forgot_password.html:4
+#: flask_app_template/templates/auth/forgot_password.html:13
+msgid "Forgot password"
+msgstr "Contraseña olvidada"
+
+#: flask_app_template/templates/email/auth/base_message.txt:1
+msgid "Hello,"
+msgstr "Hola,"
+
+#: flask_app_template/templates/email/auth/forgot_password.txt:4
+msgid "We have received a password reset request for your account."
+msgstr "Hemos recibido una solicitud para restablecer la contraseña de tu cuenta."
+
+#: flask_app_template/templates/email/auth/forgot_password.txt:6
+msgid "If you initiated this request, please click on the link below:"
+msgstr ""
+"Si has iniciado esta solicitud, por favor haz click en el siguiente enlace:"
+
+#: flask_app_template/templates/email/auth/forgot_password.txt:9
+msgid ""
+"If you did not initiate this password reset, you may safely ignore this email."
+msgstr "Si no has iniciado este proceso, puedes ignorar este correo."
+
+#: flask_app_template/templates/email/auth/password_changed.txt:4
+msgid "Your password has been changed."
+msgstr "Tu contraseña ha sido cambiada."
+
+#: flask_app_template/templates/email/auth/password_changed.txt:6
+msgid ""
+"If you did not initiate this password change, click the link below to reset it."
+msgstr ""
+"Si no has iniciado este cambio de contraseña, haz click en el siguiente enlace "
+"para restablecerla."
 
 #: flask_app_template/templates/errors/403.html:3
 #: flask_app_template/templates/errors/403.html:6
@@ -59,272 +160,176 @@ msgstr "Error interno del servidor"
 
 #: flask_app_template/templates/errors/500.html:9
 msgid ""
-"Ooops, something happening while processing your request. Please contact "
-"an administrator"
+"Ooops, something happening while processing your request. Please contact an "
+"administrator"
 msgstr ""
-"Uuups, ha ocurrido algo mientras se procesaba tu solicitud. Por favor "
-"contacta con un administrador"
+"Uuups, ha ocurrido algo mientras se procesaba tu solicitud. Por favor contacta "
+"con un administrador"
 
-#: flask_app_template/templates/extensions/flask_user/change_password.html:4
-#: flask_app_template/templates/extensions/flask_user/change_password.html:10
-#: flask_app_template/templates/extensions/flask_user/change_password.html:45
-#: flask_app_template/templates/extensions/flask_user/reset_password.html:41
-msgid "Change password"
-msgstr "Cambiar contraseña"
-
-#: flask_app_template/templates/extensions/flask_user/change_password.html:9
-#: flask_app_template/templates/extensions/flask_user/invite.html:10
 #: flask_app_template/templates/general/home.html:3
 #: flask_app_template/templates/general/home.html:8
 #: flask_app_template/templates/general/home.html:14
 msgid "Home"
 msgstr "Inicio"
 
-#: flask_app_template/templates/extensions/flask_user/change_password.html:21
-msgid "Old Password"
-msgstr "Antigua contraseña"
+#: flask_app_template/views/auth.py:44 flask_app_template/views/auth.py:61
+#: flask_app_template/views/auth.py:85
+msgid "Invalid credentials"
+msgstr "Credenciales no válidas"
 
-#: flask_app_template/templates/extensions/flask_user/change_password.html:28
-#: flask_app_template/templates/extensions/flask_user/reset_password.html:25
-msgid "New Password"
-msgstr "Nueva contraseña"
+#: flask_app_template/views/auth.py:50
+msgid "Logged in successfully"
+msgstr "Acceso correcto"
 
-#: flask_app_template/templates/extensions/flask_user/change_password.html:36
-#: flask_app_template/templates/extensions/flask_user/reset_password.html:33
-msgid "Retype New Password"
-msgstr "Confirmar nueva contraseña"
+#: flask_app_template/views/auth.py:122 flask_app_template/views/auth.py:147
+#: flask_app_template/views/auth.py:157
+msgid "A password reset token has been sent"
+msgstr "Se ha enviado un token de restauración de contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/forgot_password.html:4
-#: flask_app_template/templates/extensions/flask_user/forgot_password.html:13
-msgid "Forgot password"
-msgstr "Contraseña olvidada"
+#: flask_app_template/views/auth.py:139
+msgid "Password reset"
+msgstr "Restauración de contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/forgot_password.html:25
-msgid "Your email address"
-msgstr "Tu dirección de correo"
+#: flask_app_template/views/auth.py:188
+msgid "Invalid password reset token provided"
+msgstr "Token de restauración de contraseña no válido"
 
-#: flask_app_template/templates/extensions/flask_user/forgot_password.html:32
-msgid "Send reset password email"
-msgstr "Enviar email para restablecer contraseña"
+#: flask_app_template/views/auth.py:204
+msgid "Password reset notification"
+msgstr "Notificación de restauración de contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/invite.html:5
-#: flask_app_template/templates/extensions/flask_user/invite.html:11
-#: flask_app_template/templates/extensions/flask_user/invite.html:17
-msgid "Invite a friend"
-msgstr "Invitar a un amigo"
+#: flask_app_template/views/auth.py:209
+msgid "Password updated, you may now login"
+msgstr "Contraseña actualizada, ahora puedes iniciar sesión"
 
-#: flask_app_template/templates/extensions/flask_user/invite.html:24
-#: flask_app_template/templates/extensions/flask_user/register.html:34
-msgid "Email"
-msgstr "Email"
+#: flask_app_template/views/auth.py:216
+msgid "Error updating password, contact an admin"
+msgstr "Error al actualizar la contraseña, contacta con un administrador"
 
-#: flask_app_template/templates/extensions/flask_user/invite.html:32
-msgid "Invite!"
-msgstr "¡Invitar!"
+#~ msgid "Change password"
+#~ msgstr "Cambiar contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:4
-msgid "Login"
-msgstr "Login"
+#~ msgid "Old Password"
+#~ msgstr "Antigua contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:23
-msgid "Username or Email"
-msgstr "Nombre de usuario o Email"
+#~ msgid "New Password"
+#~ msgstr "Nueva contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:30
-#: flask_app_template/templates/extensions/flask_user/register.html:42
-msgid "Password"
-msgstr "Contraseña"
+#~ msgid "Retype New Password"
+#~ msgstr "Confirmar nueva contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:38
-msgid "Remember me"
-msgstr "Recordarme"
+#~ msgid "Your email address"
+#~ msgstr "Tu dirección de correo"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:42
-msgid "Sign in"
-msgstr "Iniciar sesión"
+#~ msgid "Send reset password email"
+#~ msgstr "Enviar email para restablecer contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/login.html:48
-msgid "Forgot your password?"
-msgstr "¿Has olvidado tu contraseña?"
+#~ msgid "Invite a friend"
+#~ msgstr "Invitar a un amigo"
 
-#: flask_app_template/templates/extensions/flask_user/register.html:4
-#: flask_app_template/templates/extensions/flask_user/register.html:13
-#: flask_app_template/templates/extensions/flask_user/register.html:58
-msgid "Register"
-msgstr "Registrarse"
+#~ msgid "Invite!"
+#~ msgstr "¡Invitar!"
 
-#: flask_app_template/templates/extensions/flask_user/register.html:26
-msgid "Username"
-msgstr "Nombre de usuario"
+#~ msgid "Login"
+#~ msgstr "Login"
 
-#: flask_app_template/templates/extensions/flask_user/register.html:50
-msgid "Retype Password"
-msgstr "Confirmar contraseña"
+#~ msgid "Username or Email"
+#~ msgstr "Nombre de usuario o Email"
 
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.html:8
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_subject.txt:3
-#: flask_app_template/templates/extensions/flask_user/reset_password.html:4
-#: flask_app_template/templates/extensions/flask_user/reset_password.html:13
-msgid "Reset password"
-msgstr "Restablecer contraseña"
+#~ msgid "Forgot your password?"
+#~ msgstr "¿Has olvidado tu contraseña?"
 
-#: flask_app_template/templates/extensions/flask_user/emails/base_message.html:1
-#: flask_app_template/templates/extensions/flask_user/emails/base_message.txt:1
-#, python-format
-msgid "Hello %(email)s,"
-msgstr "Hola %(email)s,"
+#~ msgid "Register"
+#~ msgstr "Registrarse"
 
-#: flask_app_template/templates/extensions/flask_user/emails/base_message.html:6
-#: flask_app_template/templates/extensions/flask_user/emails/base_message.txt:6
-msgid "Sincerely,"
-msgstr "Un saludo,"
+#~ msgid "Username"
+#~ msgstr "Nombre de usuario"
 
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.html:4
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.txt:4
-#, python-format
-msgid "You will need to confirm your email before joining the %(app)s community."
-msgstr "Necesitarás confirmar to email antes de unirte a la comunidad de %(app)s."
+#~ msgid "Retype Password"
+#~ msgstr "Confirmar contraseña"
 
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.html:6
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.txt:6
-msgid "If you initiated this confirmation, please click on the link below:"
-msgstr "Si has iniciado esta confirmación, por favor haz click en el siguiente enlace:"
+#~ msgid "Hello %(email)s,"
+#~ msgstr "Hola %(email)s,"
 
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.html:7
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.html:11
-#: flask_app_template/templates/extensions/flask_user/emails/registered_subject.txt:3
-msgid "Confirm your email"
-msgstr "Confirma tu email"
+#~ msgid "Sincerely,"
+#~ msgstr "Un saludo,"
 
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.html:9
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_message.txt:9
-msgid ""
-"If you did not initiate this confirmation, you may safely ignore this "
-"email."
-msgstr ""
-"Si no has iniciado esta confirmación, puedes ignorar este correo."
+#~ msgid ""
+#~ "You will need to confirm your email before joining the %(app)s community."
+#~ msgstr ""
+#~ "Necesitarás confirmar to email antes de unirte a la comunidad de %(app)s."
 
-#: flask_app_template/templates/extensions/flask_user/emails/confirm_email_subject.txt:3
-msgid "Email Confirmation"
-msgstr "Confirmación de email"
+#~ msgid "If you initiated this confirmation, please click on the link below:"
+#~ msgstr ""
+#~ "Si has iniciado esta confirmación, por favor haz click en el siguiente "
+#~ "enlace:"
 
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.html:5
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.txt:4
-msgid "We have received a password reset request for your account."
-msgstr "Hemos recibido una solicitud para restablecer la contraseña de tu cuenta."
+#~ msgid "Confirm your email"
+#~ msgstr "Confirma tu email"
 
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.html:7
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.txt:6
-msgid "If you initiated this request, please click on the link below:"
-msgstr "Si has iniciado esta solicitud, por favor haz click en el siguiente enlace:"
+#~ msgid ""
+#~ "If you did not initiate this confirmation, you may safely ignore this email."
+#~ msgstr "Si no has iniciado esta confirmación, puedes ignorar este correo."
 
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.html:10
-#: flask_app_template/templates/extensions/flask_user/emails/forgot_password_message.txt:9
-msgid ""
-"If you did not initiate this password reset, you may safely ignore this "
-"email."
-msgstr ""
-"Si no has iniciado este proceso, puedes ignorar este correo."
+#~ msgid "Email Confirmation"
+#~ msgstr "Confirmación de email"
 
-#: flask_app_template/templates/extensions/flask_user/emails/invite_message.html:5
-#: flask_app_template/templates/extensions/flask_user/emails/invite_message.txt:4
-#, python-format
-msgid "You have been invited to join the %(app)s community!"
-msgstr "¡Te han invitado a unirte a la comunidad de %(app)s!"
+#~ msgid "You have been invited to join the %(app)s community!"
+#~ msgstr "¡Te han invitado a unirte a la comunidad de %(app)s!"
 
-#: flask_app_template/templates/extensions/flask_user/emails/invite_message.html:7
-#: flask_app_template/templates/extensions/flask_user/emails/invite_message.txt:6
-msgid "To register an account, please click on the link below:"
-msgstr "Para registrar una cuenta, por favor haz click en el siguiente enlace:"
+#~ msgid "To register an account, please click on the link below:"
+#~ msgstr "Para registrar una cuenta, por favor haz click en el siguiente enlace:"
 
-#: flask_app_template/templates/extensions/flask_user/emails/invite_message.html:8
-#, python-format
-msgid "Join %(app)s"
-msgstr "Únete a %(app)s"
+#~ msgid "Join %(app)s"
+#~ msgstr "Únete a %(app)s"
 
-#: flask_app_template/templates/extensions/flask_user/emails/invite_subject.txt:3
-msgid "Invitation"
-msgstr "Invitación"
+#~ msgid "Invitation"
+#~ msgstr "Invitación"
 
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_message.html:4
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_message.txt:4
-msgid "Your password has been changed."
-msgstr "Tu contraseña ha sido cambiada."
+#~ msgid "If you did not initiate this password change,"
+#~ msgstr "Si no has iniciado este cambio de contraseña,"
 
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_message.html:6
-msgid "If you did not initiate this password change,"
-msgstr "Si no has iniciado este cambio de contraseña,"
+#~ msgid "click here to reset it"
+#~ msgstr "haz click aquí para restablecerla"
 
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_message.html:6
-msgid "click here to reset it"
-msgstr "haz click aquí para restablecerla"
+#~ msgid "Your password has been changed"
+#~ msgstr "Tu contraseña ha sido cambiada"
 
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_message.txt:7
-msgid ""
-"If you did not initiate this password change, click the link below to "
-"reset it."
-msgstr ""
-"Si no has iniciado este cambio de contraseña, haz click en el siguiente enlace "
-"para restablecerla."
+#~ msgid "Thank you for registering with the %(app)s community."
+#~ msgstr "Gracias por registrarte en la comunidad de %(app)s."
 
-#: flask_app_template/templates/extensions/flask_user/emails/password_changed_subject.txt:3
-msgid "Your password has been changed"
-msgstr "Tu contraseña ha sido cambiada"
+#~ msgid "You will need to confirm your email next."
+#~ msgstr "A continuación necesitarás confirmar tu email."
 
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.html:5
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.txt:4
-#, python-format
-msgid "Thank you for registering with the %(app)s community."
-msgstr "Gracias por registrarte en la comunidad de %(app)s."
+#~ msgid "If you initiated this registration, please click on the link below:"
+#~ msgstr ""
+#~ "Si has iniciado este registro, por favor haz click en el siguiente enlace:"
 
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.html:8
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.txt:7
-msgid "You will need to confirm your email next."
-msgstr "A continuación necesitarás confirmar tu email."
+#~ msgid ""
+#~ "If you did not initiate this registration, you may safely ignore this email."
+#~ msgstr "Si no has iniciado este registro, puedes ignorar este correo."
 
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.html:10
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.txt:9
-msgid "If you initiated this registration, please click on the link below:"
-msgstr "Si has iniciado este registro, por favor haz click en el siguiente enlace:"
+#~ msgid "Thank you for registering"
+#~ msgstr "Gracias por registrarte"
 
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.html:13
-#: flask_app_template/templates/extensions/flask_user/emails/registered_message.txt:12
-msgid ""
-"If you did not initiate this registration, you may safely ignore this "
-"email."
-msgstr ""
-"Si no has iniciado este registro, puedes ignorar este correo."
+#~ msgid "Your username has been changed."
+#~ msgstr "Tu nombre de usuario ha cambiado."
 
-#: flask_app_template/templates/extensions/flask_user/emails/registered_subject.txt:3
-msgid "Thank you for registering"
-msgstr "Gracias por registrarte"
+#~ msgid "If you did not initiate this username change, please"
+#~ msgstr "Si no has iniciado este cambio de usuario, por favor"
 
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.html:4
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.txt:4
-msgid "Your username has been changed."
-msgstr "Tu nombre de usuario ha cambiado."
+#~ msgid "sign in"
+#~ msgstr "inicia sesión"
 
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.html:5
-msgid "If you did not initiate this username change, please"
-msgstr "Si no has iniciado este cambio de usuario, por favor"
+#~ msgid "(using your email address) and change your password."
+#~ msgstr "(utilizando tu dirección de email) y cambia tu contraseña."
 
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.html:5
-msgid "sign in"
-msgstr "inicia sesión"
+#~ msgid ""
+#~ "If you did not initiate this username change, please sign in (using your "
+#~ "email address) and change your password."
+#~ msgstr ""
+#~ "Si no has iniciado este cambio de nombre de usuario, por favor inicia sesión "
+#~ "(usando tu dirección de email) y cambia tu contraseña."
 
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.html:5
-msgid "(using your email address) and change your password."
-msgstr "(utilizando tu dirección de email) y cambia tu contraseña."
-
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_message.txt:6
-msgid ""
-"If you did not initiate this username change, please sign in (using your "
-"email address) and change your password."
-msgstr ""
-"Si no has iniciado este cambio de nombre de usuario, por favor inicia sesión "
-"(usando tu dirección de email) y cambia tu contraseña."
-
-#: flask_app_template/templates/extensions/flask_user/emails/username_changed_subject.txt:3
-msgid "Your username has been changed"
-msgstr "Tu nombre de usuario ha sido cambiado"
-
+#~ msgid "Your username has been changed"
+#~ msgstr "Tu nombre de usuario ha sido cambiado"

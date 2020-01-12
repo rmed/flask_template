@@ -2,10 +2,9 @@
 
 """This file contains general views."""
 
-
 from flask import Blueprint, render_template
 from flask_babel import _
-from flask_user import login_required
+from flask_login import login_required
 
 from flask_app_template import db
 

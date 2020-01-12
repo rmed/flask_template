@@ -1,7 +1,7 @@
-recursive-include shouko/migrations *
-recursive-include shouko/templates *
-recursive-include shouko/translations *
-recursive-include shouko/static *
+recursive-include flask_app_template/migrations *
+recursive-include flask_app_template/templates *
+recursive-include flask_app_template/translations *
+recursive-include flask_app_template/static *
 
 recursive-exclude * __pycache__
 recursive-exclude * *.swp

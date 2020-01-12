@@ -1,0 +1,29 @@
+{# .... #}
+<head>
+    {# INCLUDE BEFORE ADDITIONAL TAGS #}
+    {# SocketIO connections #}
+    {% if _include_socketio %}
+        <script type="text/javascript" charset="utf-8">
+            {# Validate CSRF in the server side #}
+            var SOCKETIO = io({
+                query: {
+                    'token': '{{ csrf_token() }}'
+                }
+            });
+
+            {# Display notifications to user #}
+            SOCKETIO.on('notification', function(data) {
+                var notiType = data.type;
+                var message = data.message
+
+                if (typeof notiType === 'undefined') {
+                    notiType = 'warning';
+                }
+
+                showNotification(notiType, message);
+            });
+        </script>
+    {% endif %}
+</head>
+
+{# .... #}

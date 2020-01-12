@@ -2,12 +2,11 @@
 
 """This file contains custom CLI commands."""
 
-import datetime
 import os
 
 from flask.cli import FlaskGroup
 
-from flask_app_template import db, user_manager, init_app
+from flask_app_template import db, crypto_manager, init_app
 from flask_app_template.models import Role, User
 
 import click
@@ -42,7 +41,7 @@ def addrole(username, role):
         username: the username to add the role to
         role: role name
     """
-    user = User.query.filter_by(username=username).first()
+    user = User.get_by_username(username)
 
     if not user:
         click.echo('User does not exist')
@@ -53,7 +52,7 @@ def addrole(username, role):
         return
 
 
-    role_exists = Role.query.filter_by(name=role).count() > 0
+    role_exists = Role.query.filter_by(name=role).scalar()
 
     if not role_exists:
         click.echo('Role does not exist')
@@ -69,19 +68,20 @@ def addrole(username, role):
         correct = True
         db.session.commit()
 
+        click.echo('Roles updated')
+
     except Exception as e:
         # Catch anything unknown
         correct = False
+
+        click.echo('Error updating roles')
         click.echo(e)
+
 
     finally:
         if not correct:
-            # Cleanup and show error
+            # Cleanup
             db.session.rollback()
-            click.echo('Error updating roles')
-
-        else:
-            click.echo('Roles updated')
 
 
 @user.command()
@@ -90,14 +90,13 @@ def addrole(username, role):
 @click.option('--password', help='password', prompt=True, hide_input=True)
 def create(username, email, password):
     """Add a new user to the database."""
-    hashed_password = user_manager.hash_password(password)
+    hashed_password = crypto_manager.hash(password)
 
     new_user = User(
         username=username,
         email=email,
         password=hashed_password,
-        confirmed_at=datetime.datetime.utcnow(),
-        is_enabled=True,
+        is_active=True,
     )
 
     try:
@@ -105,105 +104,101 @@ def create(username, email, password):
         db.session.add(new_user)
         db.session.commit()
 
+        click.echo('New user created')
+
     except Exception as e:
         # Catch anything unknown
         correct = False
+
+        click.echo(
+            'Error creating user, make sure username and email are unique'
+        )
         click.echo(e)
 
     finally:
         if not correct:
-            # Cleanup and show error
+            # Cleanup
             db.session.rollback()
-
-            click.echo(
-                'Error creating user, make sure username and email are unique'
-            )
-
-        else:
-            click.echo('New user created')
 
 
 @user.command()
 @click.argument('username')
-def disable(username):
-    """Disable a user account.
+def deactivate(username):
+    """Deactivate a user account.
 
     \b
     Args:
         username: the username to disable
     """
-    user = User.query.filter_by(username=username).first()
+    user = User.get_by_username(username)
 
     if not user:
         click.echo('User does not exist')
         return
 
-    if user.is_enabled:
-        click.echo('User is already enabled')
+    if not user.is_active:
+        click.echo('User is already deactivated')
         return
 
-    user.is_enabled = False
-    user.confirmed_at = None
+    user.is_active = False
 
     try:
         correct = True
         db.session.commit()
 
+        click.echo('User deactivated')
+
     except Exception as e:
         # Catch anything unknown
         correct = False
+
+        click.echo('Error deactivating user')
         click.echo(e)
 
     finally:
         if not correct:
-            # Cleanup and show error
+            # Cleanup
             db.session.rollback()
-            click.echo('Error disabling user')
-
-        else:
-            click.echo('User disabled')
 
 
 @user.command()
 @click.argument('username')
-def enable(username):
-    """Enable a user account.
+def activate(username):
+    """Activate a user account.
 
     \b
     Args:
         username: the username to enable
     """
-    user = User.query.filter_by(username=username).first()
+    user = User.get_by_username(username)
 
     if not user:
         click.echo('User does not exist')
         return
 
-    if user.is_enabled:
-        click.echo('User is already enabled')
+    if user.is_active:
+        click.echo('User is already active')
         return
 
-    user.is_enabled = True
-    if not user.confirmed_at:
-        user.confirmed_at = datetime.datetime.utcnow()
+    user.is_active = True
 
     try:
         correct = True
         db.session.commit()
 
+        click.echo('User activated')
+
     except Exception as e:
         # Catch anything unknown
         correct = False
+
+        click.echo('Error activating user')
         click.echo(e)
 
     finally:
         if not correct:
-            # Cleanup and show error
+            # Cleanup
             db.session.rollback()
-            click.echo('Error enabling user')
-
-        else:
-            click.echo('User enabled')
 
 
 @user.command()
@@ -216,33 +211,31 @@ def password(username, password):
     Args:
         username: user to change password for
     """
-    user = User.query.filter_by(username=username).first()
+    user = User.get_by_username(username)
 
     if not user:
         click.echo('User does not exist')
         return
 
-    hashed_password = user_manager.hash_password(password)
-    user.password = hashed_password
+    user.password = crypto_manager.hash(password)
 
     try:
         correct = True
         db.session.commit()
 
+        click.echo('Password changed')
+
     except Exception as e:
         # Catch anything unknown
         correct = False
+
+        click.echo('Failed to change password')
         click.echo(e)
 
     finally:
         if not correct:
-            # Cleanup and show error
+            # Cleanup
             db.session.rollback()
-
-            click.echo('Failed to change password')
-
-        else:
-            click.echo('Password changed')
 
 
 @user.command()
@@ -254,7 +247,7 @@ def roles(username):
     Args:
         username: the username to list roles for
     """
-    user = User.query.filter_by(username=username).first()
+    user = User.get_by_username(username)
 
     if not user:
         click.echo('User does not exist')
@@ -262,7 +255,7 @@ def roles(username):
 
     roles = ', '.join(user.role_names) or 'No roles'
 
-    click.echo('Roles of user "%s": %s' % (username, roles))
+    click.echo('Roles of user "{}}": {}'.format(username, roles))
 
 
 # Begin translation commands

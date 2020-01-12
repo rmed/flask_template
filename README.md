@@ -7,3 +7,4 @@ The directory layout is as follows:
 - `base`: This directory contains the basic application structure and configuration 
 - `async_loading`: Recipe for loading content of HTML tags asynchronously through AJAX
 - `celery`: Recipe for asynchronous tasks using Celery and Redis
+- `socketio`: Recipe adding websocket support through Flask-SocketIO

@@ -1,3 +1,0 @@
-{% extends 'extensions/flask_user/emails/base_subject.txt' %}
-
-{% block subject %}{{ _('Your username has been changed') }}{% endblock %}

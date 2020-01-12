@@ -6,7 +6,7 @@
 <head>
     {# Favicon #}
 
-    <title>{% block title %}{% endblock %} | Shouko</title>
+    <title>{% block title %}{% endblock %} | {{ config['SITENAME'] }}e</title>
 
     {# Minified CSS #}
     {% assets "css_pack" %}
@@ -43,7 +43,7 @@
     <nav class="navbar has-shadow">
         <div class="container">
             <div class="navbar-brand">
-                <a href="{{ url_for('general.home') }}" class="navbar-item">{{ config['SITENAME'] }}</a>
+                <a href="{{ url_for('general.home') }}" class="navbar-item">{{ _('Home') }}</a>
 
                 <a id="sidebar-toggle" role="button" class="navbar-burger" data-target="nav-menu">
                     <span></span>
@@ -55,7 +55,7 @@
             {% if current_user.is_authenticated %}
                 <div id="nav-menu" class="navbar-menu">
                     <div class="navbar-end">
-                        <a href="{{ url_for('user.logout') }}" class="navbar-item is-tab">
+                        <a href="{{ url_for('auth.logout') }}" class="navbar-item is-tab">
                             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                             <span>{{ _('Logout') }}</span>
                         </a>

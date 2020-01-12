@@ -1,8 +1,8 @@
 # Asynchronous tasks with Celery
 
-This *recipe* adds asynchronous tasks with Celery and Redis. An example of asynchronous delivery of emails (in the context of `Flask-User`) is provided.
+This *recipe* adds asynchronous tasks with Celery and Redis. An example of asynchronous delivery of emails is provided.
 
-This *recipe* supports conditional initialization of Celery tasks (note that the celery workers must be started externally, such as through `uWSGI`).
+This *recipe* supports conditional initialization of Celery tasks (note that the celery workers must be started externally, such as through `uWSGI` or `supervisord`).
 
 
 ## Configuration
@@ -15,4 +15,4 @@ CELERY_BROKER_URL = "redis://localhost:6379/N"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/N"
 ```
 
-Where `N` is the database number from 0 to 15 (can be extended in Redis configuration). Make sure the database does not cause conflict with other applications using Redis.
+Where `N` is the database number from 0 to 15 (can be extended in Redis configuration). Make sure the database does not cause conflict with other applications using the same redis instance Redis.

@@ -2,7 +2,7 @@
 
 """This file contains custom error handlers."""
 
-from flask import Flask, render_template
+from flask import render_template
 
 
 def forbidden(e):

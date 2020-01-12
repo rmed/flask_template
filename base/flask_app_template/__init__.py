@@ -5,22 +5,23 @@
 import os
 
 from babel import dates as babel_dates
-from flask import Flask, render_template, request
+from flask import Flask, request
 from flask_assets import Environment, Bundle
-from flask_babel import Babel
+from flask_babel import Babel, _
+from flask_login import LoginManager, current_user
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_misaka import Misaka
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import SQLAlchemyAdapter, UserManager, current_user
 from flask_wtf.csrf import CSRFProtect
 
 import flask
 import pytz
 import webassets
 
-from flask_app_template.bootstrap import BASE_CONFIG, LANGUAGES, HashidsWrapper
+from flask_app_template.bootstrap import BASE_CONFIG, LANGUAGES
 from flask_app_template.errors import forbidden, page_not_found, server_error
+from flask_app_template.util import CryptoManager, HashidsWrapper
 
 __version__ = '0.1.0'
 
@@ -35,6 +36,9 @@ try:
 except ImportError:
     _USING_TOOLBAR = False
 
+
+# Crypto
+crypto_manager = CryptoManager()
 
 # Hashids
 hashids_hasher = HashidsWrapper()
@@ -54,8 +58,8 @@ migrate = Migrate()
 # Flask-Mail
 mail = Mail()
 
-# Flask-User
-user_manager = UserManager()
+# Flask-Login
+login_manager = LoginManager()
 
 # Flask-Misaka
 md = Misaka(
@@ -80,7 +84,7 @@ def get_locale():
         # Not logged in user
         return request.accept_languages.best_match(LANGUAGES)
 
-    return current_user.locale
+    return current_user.locale or 'en'
 
 
 def url_for_self(**kwargs):
@@ -126,7 +130,9 @@ def init_app():
         app.config.from_envvar('FLASK_APP_CONFIG')
 
     else:
-        app.config.from_object('flask_app_template.config.development')
+        # Development environment
+        from flask_app_template.bootstrap import DEV_CONFIG
+        app.config.update(DEV_CONFIG)
 
 
     # Custom jinja helpers
@@ -143,9 +149,12 @@ def init_app():
     if app.config.get('DEBUG') and _USING_TOOLBAR:
         toolbar.init_app(app)
 
+    # Setup cryptography (passlib)
+    crypto_manager.init_app(app)
+
 
     # Setup Hashids
-    hashids_hasher.init_hasher(app)
+    hashids_hasher.init_app(app)
 
 
     # Setup localization
@@ -170,9 +179,20 @@ def init_app():
     mail.init_app(app)
 
 
-    # Setup Flask-User
-    user_db_adapter = SQLAlchemyAdapter(db, models.User)
-    user_manager.init_app(app, db_adapter=user_db_adapter)
+    # Setup Flask-Login
+    login_manager.init_app(app)
+    login_manager.login_view = 'auth.login'
+    login_manager.login_message = _('Please login to continue')
+    login_manager.login_message_category = 'info'
+    login_manager.refresh_view = 'auth.reauthenticate'
+    login_manager.needs_refresh_message = (
+        _('To protect your account, please reauthenticate to access this page.')
+    )
+    login_manager.needs_refresh_message_category = 'info'
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return models.User.get_by_id(user_id)
 
 
     # Setup Flask-Misaka
@@ -213,8 +233,10 @@ def init_app():
 
 
     # Register blueprints
+    from flask_app_template.views.auth import bp_auth
     from flask_app_template.views.general import bp_general
 
+    app.register_blueprint(bp_auth)
     app.register_blueprint(bp_general)
 
 

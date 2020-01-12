@@ -3,11 +3,10 @@
 This is the *basic* application template, including:
 
 
-- Basic [Flask-User](https://flask-user.readthedocs.io/en/v0.6/) database models
+- Basic authentication and authorization through [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
 - [Hashids](https://hashids.org/) support (see the `hashids_hasher` object in `flask_app_template/__init__.py`
 - Localization support per user, including timezones
 - Database migrations ([Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/))
-    - A default migration with implemented `Flask-User` models is provided
 - CSRF protection for AJAX calls
 - Markdown support ([Flask-Misaka](https://flask-misaka.readthedocs.io/en/latest/))
 - Datetime filter for Jinja templates (see `format_datetime` function)
@@ -17,7 +16,7 @@ This is the *basic* application template, including:
     - [Font Awesome](https://fontawesome.com/)
     - Custom Javascript functions for navigation purposes
     - `libsass` used to compile SASS assets
-- Default basic configuration (see `bootstrap.py`)
+- Default basic and development configurations (see `bootstrap.py`)
 - Default layout
 - Custom macros (**render form fields**, **render pagination controls**, etc.)
 - Several commands (user management, translation)
@@ -63,3 +62,22 @@ In order to enable the token, simply extend the layout in a template and set the
     Content here....
 {% endblock %}
 ```
+
+## Configuration
+
+Apart from the configuration variables defined by each of the extensions used, the template includes the following additional variables:
+
+### Passlib
+
+- `PASSLIB_SCHEMES`: List of passlib hashes for the underlying `CryptoContext` object. If a string is provided, it should be a comma-separated list of hashes supported by `passlib`. Defaults to `'bcrypt'`.
+- `PASSLIB_DEPRECATED`: List of passlib hashes that are deprecated (defaults to `"auto"`, which will deprecate all hashes except for the first hash type present in the `PASSLIB_SCHEMES` configuration variable). If a string different from `"auto"` is provided, it should be a comma-separated list of hashes supported by `passlib`. Defaults to an empty list.
+
+Moreover, the manager offers a direct translation of optional algorithm options for the underlying context (see <https://passlib.readthedocs.io/en/stable/lib/passlib.context.html#algorithm-options>). These are in the form `PASSLIB_ALG_<SCHEME>_<CONFIG>` and will be translated to the appropriate `<scheme>__<config>` configuration variable name internally.
+
+**Note**: If using `bcrypt` as the hashing algorithm, it is recommended to install the `bcrypt` Python library.
+
+### Hashids
+
+- `USE_HASHIDS`: set to `True` to enable HashIds support or to `False` to disable it. If disabled, the wrapper will return `None` whenever trying to encode/decode IDs as a fallback
+- `HASHIDS_SALT` (**required**): salt to use when encoding IDs
+- `HASHIDS_LENGTH`: minimum length of the hashes (defaults to 8)

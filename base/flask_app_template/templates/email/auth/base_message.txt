@@ -1,0 +1,4 @@
+{{ _('Hello,') }}
+
+{% block message %}
+{% endblock %}
