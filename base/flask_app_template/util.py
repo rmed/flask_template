@@ -139,6 +139,8 @@ class HashidsWrapper(object):
                 min_length=app.config.get('HASHIDS_LENGTH', 8)
             )
 
+            self._initialized = True
+
 
 def is_safe_url(target):
     """Check whether the target is safe for redirection.

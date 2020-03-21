@@ -89,8 +89,11 @@ def reauthenticate():
         # Refresh session
         confirm_login()
 
-        #TODO validate redirect
-        return redirect(form.next.data)
+        # Validate destination
+        next_url = request.args.get('next')
+
+        if next_url and is_safe_url(next_url):
+            return redirect(next_url)
 
     return render_template('auth/reauthenticate.html', form=form)
 
